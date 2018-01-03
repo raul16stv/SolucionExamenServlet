@@ -7,12 +7,12 @@
 <title>Formulario de Videjuegos</title>
 </head>
 <body>
-	<form action="videojuegos" method="post">
-		<span>Nombre:</span> 
+	<form action="altaVideojuegos" method="get">
+		<span>Nombre:</span>
 		<input type="text" name="nombre"><br/>
-		<span>Fecha de creacion:</span> 
+		<span>Fecha de creacion:</span>
 		<input type="date" name="fecha"> <br/>
-		<input type="submit"> 
+		<input type="submit">
 	</form>
 	</body>
 </html>

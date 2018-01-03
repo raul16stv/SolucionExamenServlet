@@ -7,10 +7,10 @@
 <title>Formulario de Consola</title>
 </head>
 <body>
-	<form action="welcome" method="post">
-		<span>Nombre:</span> 
+	<form action="altaConsola" method="get">
+		<span>Nombre:</span>
 		<input type="text" name="nombre"><br/>
-		<span>Empresa:</span> 
+		<span>Empresa:</span>
 		<input type="text" name="Empresa"> <br/>
 		<input type="submit">
 	</form>

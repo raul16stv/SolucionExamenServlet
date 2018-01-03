@@ -6,28 +6,35 @@
 
 	<servlet>
 		<servlet-name>WelcomeServlet</servlet-name>
-		<servlet-class>ExamenRaul.ServletDDI.WelcomeServlet</servlet-class>
+		<servlet-class>Servlet.WelcomeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>WelcomeServlet</servlet-name>
-		<url-pattern>/welcome</url-pattern>
+		<url-pattern>welcome</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
+		<servlet-name>ConsolaServlet</servlet-name>
+		<servlet-class>Servlet.ConsolaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConsolaServlet</servlet-name>
+		<url-pattern>altaConsola</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>VideoJuegosServlet</servlet-name>
 		<servlet-class>Servlet.VideoJuegosServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>VideoJuegosServlet</servlet-name>
-		<url-pattern>/videojuegos</url-pattern>
+		<url-pattern>altaVideojuegos</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
         <servlet-name>ListConsolaServlet</servlet-name>
         <servlet-class>Servlet.ListConsolaServlet</servlet-class>
     </servlet>
 	<servlet-mapping>
 		<servlet-name>ListConsolaServlet</servlet-name>
-        <url-pattern>/cargarListado</url-pattern>
+        <url-pattern>cargarListado</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ListGamesServlet</servlet-name>
@@ -35,7 +42,7 @@
     </servlet>
 	<servlet-mapping>
         <servlet-name>ListGamesServlet</servlet-name>
-        <url-pattern>/cargarListadoGames</url-pattern>
+        <url-pattern>cargarListadoGames</url-pattern>
     </servlet-mapping>
     	<servlet>
 		<servlet-name>DeleteServlet</servlet-name>
@@ -44,7 +51,7 @@
 
 	<servlet-mapping>
 		<servlet-name>DeleteServlet</servlet-name>
-		<url-pattern>/delete</url-pattern>
+		<url-pattern>delete</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
