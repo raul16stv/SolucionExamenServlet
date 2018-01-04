@@ -25,7 +25,7 @@ public class ListGamesServlet extends HttpServlet {
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListadoVideoJuego.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("ListadoVideoJuego.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

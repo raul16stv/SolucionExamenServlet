@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteServlet extends HttpServlet{
 
 
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -29,13 +29,13 @@ public class DeleteServlet extends HttpServlet{
 
 	protected void confirmationRedirect(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListadoVideoJuego.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("confirmacion.jsp");
 		dispatcher.forward(req, resp);
 	}
 
 	protected void loginRedirect(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListadoVideoJuego.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("ListadoVideoJuego.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

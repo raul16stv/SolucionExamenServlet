@@ -28,13 +28,14 @@
 		<servlet-name>VideoJuegosServlet</servlet-name>
 		<url-pattern>altaVideojuegos</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
         <servlet-name>ListConsolaServlet</servlet-name>
         <servlet-class>Servlet.ListConsolaServlet</servlet-class>
     </servlet>
 	<servlet-mapping>
 		<servlet-name>ListConsolaServlet</servlet-name>
-        <url-pattern>cargarListado</url-pattern>
+        <url-pattern>cargarConsola</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ListGamesServlet</servlet-name>

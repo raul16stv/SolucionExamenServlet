@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="java.io.*,java.util.*,ExamenRaul.ServletDDI.*"%>
+<%@ page import="java.io.*,java.util.*,Modelo.Videojuego"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Listado de usuario</title>
+<title>Listado de Videojuegos</title>
 </head>
 <body>
 	<form action="cargarListadoGames" method="post">
@@ -30,7 +30,7 @@
 					<td><c:out value="${videojuegos.Titulo}" /></td>
 					<td><c:out value="${videojuegos.FechaRecomendada}" /></td>
 					<td><c:out value="${videojuegos.fechaLanzamiento}" /></td>
-					<td><a href="/delete?Titulo=${videojuegos.Titulo}">Borrar</a></td>
+					<td><a href="delete?Titulo=${videojuegos.Titulo}">Borrar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
