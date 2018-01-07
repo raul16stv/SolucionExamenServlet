@@ -45,7 +45,16 @@
         <servlet-name>ListGamesServlet</servlet-name>
         <url-pattern>cargarListadoGames</url-pattern>
     </servlet-mapping>
-    	<servlet>
+    <servlet>
+		<servlet-name>OrderServlet</servlet-name>
+		<servlet-class>Servlet.OrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderServlet</servlet-name>
+		<url-pattern>ordenarPorFecha</url-pattern>
+	</servlet-mapping>
+	<servlet>
+    <servlet>
 		<servlet-name>DeleteServlet</servlet-name>
 		<servlet-class>Servlet.DeleteServlet</servlet-class>
 	</servlet>

@@ -90,7 +90,64 @@ public class ConsolaRepository{
 			throw new RuntimeException(e);
 			}
 		}
-	
+	public List<Videojuego> OrdenarVideojuegosTitulo() {
+		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		Connection conn= manager.open(jdbcUrl);
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			statement = conn.prepareStatement("SELECT * FROM videojuego ORDER BY Titulo ASC");
+			resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				Videojuego videojuego = new Videojuego();
+				videojuego.setTitulo(resultSet.getString("Titulo"));
+				videojuego.setEdadRecomendada(resultSet.getString("EdadRecomendada"));
+				videojuegos.add(videojuego);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			close(resultSet);
+			close(statement);
+
+		}
+
+		return videojuegos;
+	}
+	public List<Videojuego> OrdenarVideojuegosFecha() {
+		List<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		Connection conn= manager.open(jdbcUrl);
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			statement = conn.prepareStatement("SELECT * FROM videojuego ORDER BY fechaPublicacion ASC");
+			resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				Videojuego videojuego = new Videojuego();
+				videojuego.setTitulo(resultSet.getString("Titulo"));
+				videojuego.setEdadRecomendada(resultSet.getString("EdadRecomendada"));
+				videojuegos.add(videojuego);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			close(resultSet);
+			close(statement);
+
+		}
+
+		return videojuegos;
+	}
 	public List<Consola> listAllConsola() {
 		List<Consola> consolas = new ArrayList<Consola>();
 		Connection conn= manager.open(jdbcUrl);
@@ -98,7 +155,7 @@ public class ConsolaRepository{
 		ResultSet resultSet = null;
 
 		try {
-			
+
 			statement = conn.prepareStatement("SELECT * FROM Consola");
 			resultSet = statement.executeQuery();
 
@@ -115,7 +172,7 @@ public class ConsolaRepository{
 		} finally {
 			close(resultSet);
 			close(statement);
-		
+
 		}
 
 		return consolas;
@@ -152,6 +209,6 @@ public class ConsolaRepository{
 
 	public void insert(Empresa empresa) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
