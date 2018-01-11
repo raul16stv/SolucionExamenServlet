@@ -7,7 +7,7 @@
 	<groupId>es.salesianos.edu</groupId>
 	<artifactId>ServletRaul</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>Servlet jsp example</name>
 
