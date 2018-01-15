@@ -4,18 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Inserta una consola</title>
 </head>
 <body>
-	<form action="welcome" method="post">
-		<span>nombre:</span> 
-		
-		<input type="text" name="name"> <br/>
-		<span>fecha nac:</span> 
-		
-		<input type="date" name="dob"><br/>
-		<span>curso:</span> 
-		<input type="text" name="course"> <br/>
+	<form action="AltaConsola" method="post">
+		<span>Nombre:</span>
+
+		<input type="text" name="nombre"> <br/>
+		<span>Emresa:</span>
+
+		<input type="text" name="empresa"><br/>
+
 		<input type="submit">
 	</form>
 	</body>

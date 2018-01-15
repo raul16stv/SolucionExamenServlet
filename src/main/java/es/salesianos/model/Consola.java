@@ -5,22 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Consola {
-
+	private String nombre;
+	private String empresa;
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Empresa getEmpresa() {
+	public String getEmpresa() {
 		return empresa;
 	}
-	public void setEmpresa(Empresa empresa) {
+	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
-	private String nombre;
-	private Empresa empresa;
-
-
-
 }

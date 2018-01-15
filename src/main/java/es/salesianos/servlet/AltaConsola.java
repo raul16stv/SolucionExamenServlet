@@ -12,25 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.salesianos.connection.ConnectionH2;
 import es.salesianos.connection.ConnectionManager;
-import es.salesianos.model.User;
-import es.salesianos.model.assembler.UserAssembler;
+import es.salesianos.model.Consola;
+import es.salesianos.model.assembler.ConsolaAssembler;
 import es.salesianos.service.Service;
 import es.salesianos.utils.DateConverter;
 
-public class WelcomeServlet extends HttpServlet{
-	
+public class AltaConsola extends HttpServlet{
+
 	private Service service = new Service();
-	
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User user = service.assembleUserFromRequest(req);
+		Consola user = service.assembleUserFromRequest(req);
 		service.insertOrUpdate(user);
-		service.calculateAgeAndAddIntoRequest(req, user.getDateOfBirth());
 		redirect(req,resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/fin.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AltaConsola.jsp");
 		dispatcher.forward(req,resp);
 	}
 
@@ -41,7 +40,7 @@ public class WelcomeServlet extends HttpServlet{
 	public void setService(Service service) {
 		this.service = service;
 	}
-	
-	
-	
+
+
+
 }
