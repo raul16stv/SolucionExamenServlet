@@ -18,9 +18,9 @@
 </form>
 
 <% 
- List<User> users = (List<User>)request.getAttribute("listAllUsers");
- out.println(users);
- pageContext.setAttribute("users", users);
+ List<Consola> consolas = (List<Consola>)request.getAttribute("listAllUsers");
+ System.out.println(consolas);
+ pageContext.setAttribute("consola", consolas);
 %>
 <br/>
 <br/>
@@ -35,16 +35,15 @@
 	<thead>
 		<tr>
 			<td>Nombre</td>
-			<td>Fecha</td>
-			<td>Curso</td>
+			<td>Empresa</td>
+		
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="user1" items="${listAllUsers}">
+		<c:forEach var="consola1" items="${listAllUsers}">
 			<tr>
-				<td><c:out value="${user1.name}"/> </td>
-				<td><c:out value="${user1.dateOfBirth}"/> </td>
-				<td><c:out value="${user1.course}"/> </td>
+				<td><c:out value="${consola1.nombre}"/> </td>
+				<td><c:out value="${consola1.empresa}"/> </td>
 	    	</tr>
 		</c:forEach>
 	</tbody>
@@ -64,30 +63,29 @@
 <thead>
 	<tr>
 		<td>Nombre</td>
-		<td>Fecha</td>
-		<td>Curso</td>
+		<td>Empresa</td>
+		
 	</tr>
 </thead>
 <tbody>
 <%
 
-if(null != users && !users.isEmpty()){
-for (User user2 : users) {
+if(null != consolas && !consolas.isEmpty()){
+for (Consola consola2 : consolas) {
 	out.println("<tr>");
 	out.println("<td>");
-	out.println(user2.getName());
+	out.println(consola2.getNombre());
 	out.println("</td>");
 	out.println("<td>");
-	out.println(user2.getCourse());
-	out.println("</td>");
-	out.println("<td>");
-	out.println(user2.getDateOfBirth());
+	out.println(consola2.getEmpresa());
 	out.println("</td>");
 	out.println("</tr>");
 }
 	
 }
 %>
+
+
 </tbody>
 </table>
 
