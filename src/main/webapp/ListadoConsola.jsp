@@ -44,6 +44,7 @@
 			<tr>
 				<td><c:out value="${consola1.nombre}"/> </td>
 				<td><c:out value="${consola1.empresa}"/> </td>
+				<td><a href="deleteConsola?name=${consola1.nombre}">Borrar</a></td>
 	    	</tr>
 		</c:forEach>
 	</tbody>

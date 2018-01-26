@@ -65,8 +65,7 @@ public class Repository {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement("INSERT INTO Consolas (nombre,empresa)" +
-					"VALUES (?, ?)");
+			preparedStatement = conn.prepareStatement("INSERT INTO Consolas (nombre,empresa)" + "VALUES (?, ?)");
 			preparedStatement.setString(1, userFormulario.getNombre());
 			preparedStatement.setString(2, userFormulario.getEmpresa());
 			preparedStatement.executeUpdate();

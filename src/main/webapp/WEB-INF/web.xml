@@ -28,7 +28,18 @@
         <servlet-name>ListadoConsola</servlet-name>
         <url-pattern>cargarListado</url-pattern>
     </servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ConsolaDelete</servlet-name>
+		<servlet-class>es.salesianos.servlet.ConsolaDelete</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>ConsolaDelete</servlet-name>
+		<url-pattern>deleteConsola</url-pattern>
+	</servlet-mapping>
+
+	
     <servlet>
         <servlet-name>motos</servlet-name>
         <servlet-class>es.salesianos.servlet.MotoServlet</servlet-class>

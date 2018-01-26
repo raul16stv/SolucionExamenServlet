@@ -24,7 +24,7 @@ public class AltaConsola extends HttpServlet{
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Consola user = service.assembleUserFromRequest(req);
-		service.insertOrUpdate(user);
+		service.insertOrUpdateConsole(user);
 		redirect(req,resp);
 	}
 

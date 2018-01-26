@@ -24,7 +24,7 @@ public class Service {
 		return ConsolaAssembler.assembleUserFrom(req);
 	}
 
-	public void insertOrUpdate(Consola userFormulario) {
+	public void insertOrUpdateConsole(Consola userFormulario) {
 		Consola userInDatabase = repository.search(userFormulario);
 		if(null == userInDatabase){
 			repository.insert(userFormulario);
@@ -33,7 +33,7 @@ public class Service {
 		}
 	}
 
-
+	
 	
 	
 	public List<Consola> listAllUsers() {
