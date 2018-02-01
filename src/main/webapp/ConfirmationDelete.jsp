@@ -13,10 +13,10 @@
 	</head>
 	<body>
 	    ¿Esta usted seguro de borrar el elemento?
-	    
-		<form action="ConsolaDelete" method="post">
+
+		<form action="deleteConsola" method="post">
 			<input type="text" value="${nombre}">
 			<input type="submit" value="Si">
-		</form>	
+		</form>
 	</body>
 </html>

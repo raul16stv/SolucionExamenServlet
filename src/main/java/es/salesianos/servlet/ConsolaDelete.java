@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.salesianos.model.Consola;
 import es.salesianos.service.Service;
 
 
@@ -18,6 +19,8 @@ public class ConsolaDelete extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Consola consola = service.assembleUserFromRequest(req);
+		service.deleteConsola(consola);
 		loginRedirect(req, resp);
 	}
 

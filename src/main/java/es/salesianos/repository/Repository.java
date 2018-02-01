@@ -60,6 +60,22 @@ public class Repository {
 			throw new RuntimeException(e);
 		}
 	}
+	public void delete(Consola userFormulario) {
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = conn.prepareStatement("DELETE FROM Consolas WHERE nombre=?");
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			close(preparedStatement);
+		}
+
+
+		manager.close(conn);
+	}
 
 	public void insert(Consola userFormulario) {
 		Connection conn = manager.open(jdbcUrl);

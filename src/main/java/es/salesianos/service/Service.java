@@ -14,12 +14,12 @@ import es.salesianos.repository.Repository;
 import es.salesianos.utils.DateConverter;
 
 public class Service {
-	
-	
+
+
 	private Repository repository = new Repository();
 	private DateConverter converter = new DateConverter();
-	
-	
+
+
 	public Consola assembleUserFromRequest(HttpServletRequest req) {
 		return ConsolaAssembler.assembleUserFrom(req);
 	}
@@ -32,15 +32,14 @@ public class Service {
 			repository.update(userFormulario);
 		}
 	}
-
-	
-	
-	
+	public void deleteConsola(Consola consola){
+		repository.delete(consola);
+	}
 	public List<Consola> listAllUsers() {
 		return repository.searchAll();
 	}
-	
-	
+
+
 	public DateConverter getConverter() {
 		return converter;
 	}
@@ -55,8 +54,8 @@ public class Service {
 	public void setRepository(Repository repository) {
 		this.repository = repository;
 	}
-	
-	
-	
+
+
+
 
 }

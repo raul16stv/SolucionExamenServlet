@@ -788,3 +788,11 @@ Caused by: org.h2.jdbc.JdbcSQLException: La conexión no fue cerrada por la apli
 The connection was not closed by the application and is garbage collected [90018-192]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 32 more
+2018-02-01 19:42:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "DELETE FROM CONSOLAS WHERE NOMBRE[*] ==? "
+Syntax error in SQL statement "DELETE FROM CONSOLAS WHERE NOMBRE[*] ==? "; SQL statement:
+DELETE FROM Consolas WHERE nombre ==? [42000-192]
+2018-02-01 19:42:32 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Error de Sintaxis en sentencia SQL "DELETE FROM CONSOLAS WHERE NOMBRE[*] ==? "
+Syntax error in SQL statement "DELETE FROM CONSOLAS WHERE NOMBRE[*] ==? "; SQL statement:
+DELETE FROM Consolas WHERE nombre ==? [42000-192]
