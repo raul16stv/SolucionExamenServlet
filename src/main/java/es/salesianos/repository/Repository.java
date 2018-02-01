@@ -22,7 +22,7 @@ public class Repository {
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consola WHERE nombre = ?");
+			prepareStatement = conn.prepareStatement("SELECT * FROM Consolas WHERE nombre = ?");
 			prepareStatement.setString(1, userFormulario.getNombre());
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
@@ -92,7 +92,7 @@ public class Repository {
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consola");
+			prepareStatement = conn.prepareStatement("SELECT * FROM Consolas");
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
 				Consola userInDatabase = new Consola();
