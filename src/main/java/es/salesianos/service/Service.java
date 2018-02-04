@@ -11,14 +11,12 @@ import es.salesianos.connection.ConnectionManager;
 import es.salesianos.model.Consola;
 import es.salesianos.model.assembler.ConsolaAssembler;
 import es.salesianos.repository.Repository;
-import es.salesianos.utils.DateConverter;
+
 
 public class Service {
 
 
 	private Repository repository = new Repository();
-	private DateConverter converter = new DateConverter();
-
 
 	public Consola assembleUserFromRequest(HttpServletRequest req) {
 		return ConsolaAssembler.assembleUserFrom(req);
@@ -33,19 +31,20 @@ public class Service {
 		}
 	}
 	public void deleteConsola(Consola consola){
+		repository.filtrarMarcas(consola);
+	}
+	public void filtrarConsola(Consola consola){
 		repository.delete(consola);
 	}
 	public List<Consola> listAllUsers() {
 		return repository.searchAll();
 	}
 
+	public List<Consola> listAllFiltrado() {
+		return repository.filtrado();
+	}
 
-	public DateConverter getConverter() {
-		return converter;
-	}
-	public void setConverter(DateConverter converter) {
-		this.converter = converter;
-	}
+
 
 	public Repository getRepository() {
 		return repository;

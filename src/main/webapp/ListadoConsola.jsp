@@ -17,7 +17,7 @@
 	<input type="submit" value="ver listado">
 </form>
 
-<% 
+<%
  List<Consola> consolas = (List<Consola>)request.getAttribute("listAllUsers");
  System.out.println(consolas);
  pageContext.setAttribute("consola", consolas);
@@ -36,15 +36,16 @@
 		<tr>
 			<td>Nombre</td>
 			<td>Empresa</td>
-		
+
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach var="consola1" items="${listAllUsers}">
 			<tr>
 				<td><c:out value="${consola1.nombre}"/> </td>
-				<td><c:out value="${consola1.empresa}"/> </td>
-				<td><a href="deleteConsola?name=${consola1.nombre}">Borrar</a></td>
+				<td><c:out value="${consola1.empresa}"/></td>
+				<td><a href="filtrarConsola?empresa=${consola1.empresa}">Filtrar por esta marca</a></td>
+				<td><a href="deleteConsola?nombre=${consola1.nombre}">Borrar</a></td>
 	    	</tr>
 		</c:forEach>
 	</tbody>
@@ -65,7 +66,7 @@
 	<tr>
 		<td>Nombre</td>
 		<td>Empresa</td>
-		
+
 	</tr>
 </thead>
 <tbody>
@@ -82,7 +83,7 @@ for (Consola consola2 : consolas) {
 	out.println("</td>");
 	out.println("</tr>");
 }
-	
+
 }
 %>
 

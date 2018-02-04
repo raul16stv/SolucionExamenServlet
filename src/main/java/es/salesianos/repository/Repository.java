@@ -76,7 +76,22 @@ public class Repository {
 
 		manager.close(conn);
 	}
+	public void filtrarMarcas(Consola userFormulario) {
+		Connection conn = manager.open(jdbcUrl);
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = conn.prepareStatement("SELECT * FROM Consolas WHERE empresa=? ");
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			close(preparedStatement);
+		}
 
+
+		manager.close(conn);
+	}
 	public void insert(Consola userFormulario) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
@@ -118,6 +133,26 @@ public class Repository {
 				listUsers.add(userInDatabase);
 			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			close(resultSet);
+			close(prepareStatement);
+		}
+
+
+		manager.close(conn);
+		return listUsers;
+	}
+	public List<Consola> filtrado() {
+		List<Consola> listUsers= new ArrayList<Consola>();
+		Connection conn = manager.open(jdbcUrl);
+		ResultSet resultSet = null;
+		PreparedStatement prepareStatement = null;
+		try {
+			prepareStatement = conn.prepareStatement("SELECT * FROM Consolas WHERE empresa=?");
+			resultSet = prepareStatement.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
