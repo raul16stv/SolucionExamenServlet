@@ -22,21 +22,21 @@ public class Service {
 		return ConsolaAssembler.assembleUserFrom(req);
 	}
 
-	public void insertOrUpdateConsole(Consola userFormulario) {
-		Consola userInDatabase = repository.search(userFormulario);
-		if(null == userInDatabase){
-			repository.insert(userFormulario);
+	public void insertOrUpdateConsole(Consola consolaFormulario) {
+		Consola consolaInDatabase = repository.search(consolaFormulario);
+		if(null == consolaInDatabase){
+			repository.insert(consolaFormulario);
 		}else{
-			repository.update(userFormulario);
+			repository.update(consolaFormulario);
 		}
 	}
 	public void deleteConsola(Consola consola){
-		repository.filtrarMarcas(consola);
-	}
-	public void filtrarConsola(Consola consola){
 		repository.delete(consola);
 	}
-	public List<Consola> listAllUsers() {
+	public void filtrarConsola(Consola consola){
+		repository.filtrarMarcas(consola);
+	}
+	public List<Consola> listAllConsolas() {
 		return repository.searchAll();
 	}
 

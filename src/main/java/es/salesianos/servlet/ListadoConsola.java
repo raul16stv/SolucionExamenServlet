@@ -13,17 +13,17 @@ import es.salesianos.model.Consola;
 import es.salesianos.service.Service;
 
 public class ListadoConsola extends HttpServlet {
-	
+
 	private Service servicio = new  Service();
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Consola> listAllUsers = servicio.listAllUsers();
-		req.setAttribute("listAllUsers", listAllUsers);
+		List<Consola> listAllConsolas = servicio.listAllConsolas();
+		req.setAttribute("listAllConsolas", listAllConsolas);
 		redirect(req,resp);
 	}
-	
-	
+
+
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListadoConsola.jsp");
 		dispatcher.forward(req,resp);

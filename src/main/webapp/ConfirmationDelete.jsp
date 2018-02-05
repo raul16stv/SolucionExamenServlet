@@ -12,7 +12,7 @@
 		<title>Confirmacion borrado</title>
 	</head>
 	<body>
-	    ¿Esta usted seguro de borrar el elemento?
+	    ¿Esta usted seguro de borrar esta consola?
 
 		<form action="deleteConsola" method="post">
 			<input type="text" value="${nombre}">

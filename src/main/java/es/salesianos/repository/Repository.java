@@ -16,19 +16,19 @@ public class Repository {
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new ConnectionH2();
 
-	public Consola search(Consola userFormulario) {
-		Consola userInDatabase= null;
+	public Consola search(Consola consolaFormulario) {
+		Consola consolaInDatabase= null;
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Consolas WHERE nombre = ?");
-			prepareStatement.setString(1, userFormulario.getNombre());
+			prepareStatement.setString(1, consolaFormulario.getNombre());
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
-				userInDatabase = new Consola();
-				userInDatabase.setNombre(resultSet.getString(1));
-				userInDatabase.setEmpresa(resultSet.getString(2));
+				consolaInDatabase = new Consola();
+				consolaInDatabase.setNombre(resultSet.getString(1));
+				consolaInDatabase.setEmpresa(resultSet.getString(2));
 
 			}
 		} catch (SQLException e) {
@@ -40,7 +40,7 @@ public class Repository {
 
 		}
 		manager.close(conn);
-		return userInDatabase;
+		return consolaInDatabase;
 	}
 
 	private void close(PreparedStatement prepareStatement) {
@@ -60,11 +60,12 @@ public class Repository {
 			throw new RuntimeException(e);
 		}
 	}
-	public void delete(Consola userFormulario) {
+	public void delete(Consola consolaFormulario) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = conn.prepareStatement("DELETE FROM Consolas WHERE nombre=?");
+			preparedStatement.setString(1, consolaFormulario.getNombre());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,11 +77,12 @@ public class Repository {
 
 		manager.close(conn);
 	}
-	public void filtrarMarcas(Consola userFormulario) {
+	public void filtrarMarcas(Consola consolaFormulario) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = conn.prepareStatement("SELECT * FROM Consolas WHERE empresa=? ");
+			preparedStatement.setString(1, consolaFormulario.getEmpresa());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,13 +94,13 @@ public class Repository {
 
 		manager.close(conn);
 	}
-	public void insert(Consola userFormulario) {
+	public void insert(Consola consolaFormulario) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = conn.prepareStatement("INSERT INTO Consolas (nombre,empresa)" + "VALUES (?, ?)");
-			preparedStatement.setString(1, userFormulario.getNombre());
-			preparedStatement.setString(2, userFormulario.getEmpresa());
+			preparedStatement.setString(1, consolaFormulario.getNombre());
+			preparedStatement.setString(2, consolaFormulario.getEmpresa());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -111,14 +113,14 @@ public class Repository {
 		manager.close(conn);
 	}
 
-	public void update(Consola userFormulario) {
+	public void update(Consola consolaFormulario) {
 		Connection conn = manager.open(jdbcUrl);
 		// codigo sql que  inserta un usuario
 		manager.close(conn);
 	}
 
 	public List<Consola> searchAll() {
-		List<Consola> listUsers= new ArrayList<Consola>();
+		List<Consola> listConsolas= new ArrayList<Consola>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
@@ -126,11 +128,11 @@ public class Repository {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Consolas");
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
-				Consola userInDatabase = new Consola();
-				userInDatabase.setNombre(resultSet.getString(1));
-				userInDatabase.setEmpresa(resultSet.getString(2));
+				Consola consolaInDatabase = new Consola();
+				consolaInDatabase.setNombre(resultSet.getString(1));
+				consolaInDatabase.setEmpresa(resultSet.getString(2));
 
-				listUsers.add(userInDatabase);
+				listConsolas.add(consolaInDatabase);
 			}
 
 		} catch (SQLException e) {
@@ -143,10 +145,10 @@ public class Repository {
 
 
 		manager.close(conn);
-		return listUsers;
+		return listConsolas;
 	}
 	public List<Consola> filtrado() {
-		List<Consola> listUsers= new ArrayList<Consola>();
+		List<Consola> listConsolas= new ArrayList<Consola>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
@@ -163,7 +165,7 @@ public class Repository {
 
 
 		manager.close(conn);
-		return listUsers;
+		return listConsolas;
 	}
 
 

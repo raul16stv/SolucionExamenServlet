@@ -9,12 +9,12 @@ public class ConsolaAssembler {
 
 	public static Consola assembleUserFrom(HttpServletRequest req) {
 		
-		Consola user = new Consola();
+		Consola consola = new Consola();
 		String nombre = req.getParameter("nombre");
 		String empresa = req.getParameter("empresa");
-		user.setNombre(nombre);
-		user.setEmpresa(empresa);
+		consola.setNombre(nombre);
+		consola.setEmpresa(empresa);
 
-		return user;
+		return consola;
 	}
 }

@@ -43,8 +43,12 @@
 		<c:forEach var="consola1" items="${listAllUsers}">
 			<tr>
 				<td><c:out value="${consola1.nombre}"/> </td>
-				<td><c:out value="${consola1.empresa}"/></td>
-				<td><a href="filtrarConsola?empresa=${consola1.empresa}">Filtrar por esta marca</a></td>
+				<td>
+					<form name="submitForm" method="post" action="filtrarConsola">
+				  		<c:out value="${consola1.nombre}"/>
+				 	   <A HREF="javascript:document.submitForm.submit()">Click Me</A>
+					</form>
+				</td>
 				<td><a href="deleteConsola?nombre=${consola1.nombre}">Borrar</a></td>
 	    	</tr>
 		</c:forEach>
@@ -61,40 +65,30 @@
 <br/>
 
 
-<table border="1">
-<thead>
-	<tr>
-		<td>Nombre</td>
-		<td>Empresa</td>
-
-	</tr>
-</thead>
-<tbody>
 <%
-
-if(null != consolas && !consolas.isEmpty()){
-for (Consola consola2 : consolas) {
-	out.println("<tr>");
-	out.println("<td>");
-	out.println(consola2.getNombre());
-	out.println("</td>");
-	out.println("<td>");
-	out.println(consola2.getEmpresa());
-	out.println("</td>");
-	out.println("</tr>");
-}
-
-}
+ List<Consola> consolasFiltradas = (List<Consola>)request.getAttribute("listAllFiltrado");
+ pageContext.setAttribute("consolaFiltradas", consolasFiltradas);
 %>
 
 
-</tbody>
+<table border="1">
+	<thead>
+		<tr>
+			<td>Nombre</td>
+			<td>Empresa</td>
+
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="consola2" items="${listAllFiltrado}">
+			<tr>
+				<td><c:out value="${consola2.nombre}"/> </td>
+				<td><c:out value="${consola2.empresa}"/></td>
+				<td><a href="deleteConsola?nombre=${consola2.nombre}">Borrar</a></td>
+	    	</tr>
+		</c:forEach>
+	</tbody>
 </table>
-
-
-
-
-
 
 
 </body>
