@@ -9,23 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.salesianos.model.Consola;
-import es.salesianos.service.Service;
+import es.salesianos.model.Console;
+import es.salesianos.model.Videogame;
+import es.salesianos.service.ConsoleService;
+import es.salesianos.service.VideogameService;
 
-public class ListadoConsola extends HttpServlet {
+public class ListVideogame extends HttpServlet {
 
-	private Service servicio = new  Service();
+	private VideogameService service= new  VideogameService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Consola> listAllConsolas = servicio.listAllConsolas();
-		req.setAttribute("listAllConsolas", listAllConsolas);
+		List<Videogame> listAllVideogames = service.listAllVideogames();
+		req.setAttribute("listAllVideogames", listAllVideogames);
 		redirect(req,resp);
 	}
 
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListadoConsola.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListVideogame.jsp");
 		dispatcher.forward(req,resp);
 	}
 }

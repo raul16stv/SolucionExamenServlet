@@ -12,32 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.salesianos.connection.ConnectionH2;
 import es.salesianos.connection.ConnectionManager;
-import es.salesianos.model.Consola;
-import es.salesianos.model.assembler.ConsolaAssembler;
-import es.salesianos.service.Service;
+import es.salesianos.model.Console;
+import es.salesianos.model.Videogame;
+import es.salesianos.service.ConsoleService;
+import es.salesianos.service.VideogameService;
 
 
-public class AltaConsola extends HttpServlet{
 
-	private Service service = new Service();
+public class CreateVideogame extends HttpServlet{
+
+	private VideogameService service = new VideogameService();
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Consola consola = service.assembleUserFromRequest(req);
-		service.insertOrUpdateConsole(consola);
+		Videogame videogame = service.assembleVideogameFromRequest(req);
+		service.insertOrUpdateVideogame(videogame);
 		redirect(req,resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AltaConsola.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateVideogame.jsp");
 		dispatcher.forward(req,resp);
 	}
 
-	public Service getService() {
+	public VideogameService getService() {
 		return service;
 	}
 
-	public void setService(Service service) {
+	public void setVideogameService(VideogameService service) {
 		this.service = service;
 	}
 

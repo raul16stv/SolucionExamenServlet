@@ -4,16 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Inserta una consola</title>
+<title>Insert a new console </title>
 </head>
 <body>
-	<form action="AltaConsola" method="post">
-		<span>Nombre:</span>
+	<form action="CreateVideogame" method="post">
+		<span>Name:</span>
 
-		<input type="text" name="nombre"> <br/>
-		<span>Emresa:</span>
+		<input type="text" name="name"> <br/>
+		<span>Recommended Age:</span>
 
-		<input type="text" name="empresa"><br/>
+		<input type="text" name="recommendedAge"><br/>
+		<span>Release Date:</span>
+
+		<input type="date" name="releaseDate"><br/>
 
 		<input type="submit">
 	</form>

@@ -4,10 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Insert a new console </title>
 </head>
 <body>
-<b><%= request.getParameter("name") %></b>
-<b><%= request.getAttribute("age") %></b>
-</body>
+	<form action="CreateConsole" method="post">
+		<span>Name:</span>
+
+		<input type="text" name="name"> <br/>
+		<span>Company:</span>
+
+		<input type="text" name="company"><br/>
+
+		<input type="submit">
+	</form>
+	</body>
 </html>

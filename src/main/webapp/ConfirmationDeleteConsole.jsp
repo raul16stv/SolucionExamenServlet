@@ -9,14 +9,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Confirmacion borrado</title>
+		<title>Confirm Delete Process</title>
 	</head>
 	<body>
-	    ¿Esta usted seguro de borrar esta consola?
+	    ¿Are you sure?
 
-		<form action="deleteConsola" method="post">
-			<input type="text" value="${nombre}">
-			<input type="submit" value="Si">
+		<form action="deleteConsole" method="post">
+			<input type="text" value="${name}">
+			<input type="submit" value="Yes">
 		</form>
 	</body>
 </html>

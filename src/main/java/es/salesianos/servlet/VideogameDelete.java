@@ -8,38 +8,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.salesianos.model.Consola;
-import es.salesianos.service.Service;
+import es.salesianos.model.Console;
+import es.salesianos.model.Videogame;
+import es.salesianos.service.ConsoleService;
+import es.salesianos.service.VideogameService;
 
 
-public class ConsolaDelete extends HttpServlet {
+public class VideogameDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private Service service = new Service();
+	private VideogameService service = new VideogameService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Consola consola = service.assembleUserFromRequest(req);
-		service.deleteConsola(consola);
+		Videogame videogame = service.assembleVideogameFromRequest(req);
+		service.deleteVideogame(videogame);
 		loginRedirect(req, resp);
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("nombre", req.getParameter("nombre"));
+		req.setAttribute("name", req.getParameter("name"));
 		confirmationRedirect(req, resp);
 	}
 
 
 	protected void confirmationRedirect(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("ConfirmationDelete.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("ConfirmationDeleteVideogame.jsp");
 		dispatcher.forward(req, resp);
 	}
 
 	protected void loginRedirect(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("ListadoConsola.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("ListVideogame.jsp");
 		dispatcher.forward(req, resp);
 	}
 }
