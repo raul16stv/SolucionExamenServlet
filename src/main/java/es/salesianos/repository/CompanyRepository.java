@@ -9,26 +9,29 @@ import java.util.List;
 
 import es.salesianos.connection.ConnectionH2;
 import es.salesianos.connection.ConnectionManager;
+import es.salesianos.model.Company;
 import es.salesianos.model.Console;
+import es.salesianos.model.Videogame;
 
-public class ConsoleRepository {
+public class CompanyRepository {
 
 	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
 	ConnectionManager manager = new ConnectionH2();
 
-	public Console search(Console consoleForm) {
-		Console consoleInDatabase= null;
+	public Company search(Company companyForm) {
+		Company companyInDatabase= null;
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE name = ?");
-			prepareStatement.setString(1, consoleForm.getName());
+			prepareStatement = conn.prepareStatement("SELECT * FROM Companies WHERE name = ?");
+			prepareStatement.setString(1, companyForm.getName());
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
-				consoleInDatabase = new Console();
-				consoleInDatabase.setName(resultSet.getString(1));
-				consoleInDatabase.setCompanyId(resultSet.getInt(2));
+				companyInDatabase = new Company();
+				companyInDatabase.setName(resultSet.getString(1));
+				companyInDatabase.setCreationDate(resultSet.getDate(2));
+				companyInDatabase.setCompanyId(resultSet.getInt(3));
 
 			}
 		} catch (SQLException e) {
@@ -40,7 +43,7 @@ public class ConsoleRepository {
 
 		}
 		manager.close(conn);
-		return consoleInDatabase;
+		return companyInDatabase;
 	}
 
 	private void close(PreparedStatement prepareStatement) {
@@ -60,12 +63,12 @@ public class ConsoleRepository {
 			throw new RuntimeException(e);
 		}
 	}
-	public void delete(Console consoleForm) {
+	public void delete(Company companyForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement("DELETE FROM Consoles WHERE name=?");
-			preparedStatement.setString(1, consoleForm.getName());
+			preparedStatement = conn.prepareStatement("DELETE FROM Companies WHERE name=?");
+			preparedStatement.setString(1, companyForm.getName());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,13 +81,14 @@ public class ConsoleRepository {
 		manager.close(conn);
 	}
 
-	public void insert(Console consoleForm) {
+	public void insert(Company companyForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement("INSERT INTO Consoles (name,companyId)" + "VALUES (?, ?)");
-			preparedStatement.setString(1, consoleForm.getName());
-			preparedStatement.setInt(2, consoleForm.getCompanyId());
+			preparedStatement = conn.prepareStatement("INSERT INTO Companies (id, name,creationDate)" + "VALUES (?,?,?)");
+			preparedStatement.setString(2, companyForm.getName());
+			preparedStatement.setInt(1, companyForm.getCompanyId());
+			preparedStatement.setDate(3,companyForm.getCreationDate());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,26 +101,27 @@ public class ConsoleRepository {
 		manager.close(conn);
 	}
 
-	public void update(Console consolaFormulario) {
+	public void update(Company companyFormulario) {
 		Connection conn = manager.open(jdbcUrl);
 		// codigo sql que  inserta un usuario
 		manager.close(conn);
 	}
 
-	public List<Console> searchAll() {
-		List<Console> listConsoles= new ArrayList<Console>();
+	public List<Company> searchAll() {
+		List<Company> listCompanies= new ArrayList<Company>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles");
+			prepareStatement = conn.prepareStatement("SELECT * FROM Companies");
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
-				Console consoleInDatabase = new Console();
-				consoleInDatabase.setName(resultSet.getString(1));
-				consoleInDatabase.setCompanyId(resultSet.getInt(2));
+				Company companyInDatabase = new Company();
+				companyInDatabase.setName(resultSet.getString(1));
+				companyInDatabase.setCreationDate(resultSet.getDate(2));
+				companyInDatabase.setCompanyId(resultSet.getInt(3));
 
-				listConsoles.add(consoleInDatabase);
+				listCompanies.add(companyInDatabase);
 			}
 
 		} catch (SQLException e) {
@@ -129,7 +134,7 @@ public class ConsoleRepository {
 
 
 		manager.close(conn);
-		return listConsoles;
+		return listCompanies;
 	}
 
 }

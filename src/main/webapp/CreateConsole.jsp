@@ -13,7 +13,7 @@
 		<input type="text" name="name"> <br/>
 		<span>Company:</span>
 
-		<input type="text" name="company"><br/>
+		<input type="text" name="companyId"><br/>
 
 		<input type="submit">
 	</form>

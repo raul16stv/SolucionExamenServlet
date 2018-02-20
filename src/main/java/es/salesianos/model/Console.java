@@ -5,18 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Console {
+
 	private String name;
-	private String company;
+	private int companyId;
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getCompany() {
-		return company;
+	public int getCompanyId() {
+		return companyId;
 	}
-	public void setCompany(String company) {
-		this.company = company;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
 }

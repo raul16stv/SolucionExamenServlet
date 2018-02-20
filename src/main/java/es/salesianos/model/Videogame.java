@@ -9,6 +9,7 @@ public class Videogame {
 	private String name;
 	private String recommendedAge;
 	private Date releaseDate;
+	private int companyId;
 
 	public String getName() {
 		return name;
@@ -27,5 +28,11 @@ public class Videogame {
 	}
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+	public int getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
 }

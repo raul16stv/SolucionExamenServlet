@@ -32,6 +32,7 @@ public class VideogameRepository {
 				videogameForm.setName(resultSet.getString(1));
 				videogameForm.setRecommendedAge(resultSet.getString(2));
 				videogameForm.setReleaseDate(resultSet.getDate(3));
+				videogameForm.setCompanyId(resultSet.getInt(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,10 +84,11 @@ public class VideogameRepository {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement("INSERT INTO Videogames (name,recommendedAge, releaseDate)" + "VALUES (?, ?,?)");
+			preparedStatement = conn.prepareStatement("INSERT INTO Videogames (name,recommendedAge, releaseDate, companyId)" + "VALUES (?, ?,?,?)");
 			preparedStatement.setString(1, videogameForm.getName());
 			preparedStatement.setString(2, videogameForm.getRecommendedAge());
 			preparedStatement.setDate(3,videogameForm.getReleaseDate());
+			preparedStatement.setInt(4,videogameForm.getCompanyId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,6 +120,7 @@ public class VideogameRepository {
 				videogameInDatabase.setName(resultSet.getString(1));
 				videogameInDatabase.setRecommendedAge(resultSet.getString(2));
 				videogameInDatabase.setReleaseDate(resultSet.getDate(3));
+				videogameInDatabase.setCompanyId(resultSet.getInt(4));
 				listVideogames.add(videogameInDatabase);
 			}
 

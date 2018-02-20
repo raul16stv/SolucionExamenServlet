@@ -44,7 +44,7 @@
 		<c:forEach var="console1" items="${listAllConsoles}">
 			<tr>
 				<td><c:out value="${console1.name}"/> </td>
-				<td><c:out value="${console1.company}"/> </td>
+				<td><c:out value="${console1.companyId}"/> </td>
 				<td><a href="deleteConsole?nombre=${console1.name}">Delete</a></td>
 	    	</tr>
 		</c:forEach>

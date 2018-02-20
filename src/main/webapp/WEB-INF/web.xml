@@ -38,8 +38,8 @@
 		<servlet-name>ConsoleDelete</servlet-name>
 		<url-pattern>deleteConsole</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<!-- Videogame -->
 	   <servlet>
         <servlet-name>CreateVideogame</servlet-name>
@@ -69,5 +69,25 @@
 		<servlet-name>VideogameDelete</servlet-name>
 		<url-pattern>VideogameDelete</url-pattern>
 	</servlet-mapping>
+	<!-- Company -->
+	<servlet>
+        <servlet-name>CreateCompany</servlet-name>
+        <servlet-class>es.salesianos.servlet.CreateCompany</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateCompany</servlet-name>
+        <url-pattern>CreateCompany</url-pattern>
+    </servlet-mapping>
+      <servlet>
+        <servlet-name>ListCompany</servlet-name>
+        <servlet-class>es.salesianos.servlet.ListCompany</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ListCompany</servlet-name>
+        <url-pattern>ListCompany</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

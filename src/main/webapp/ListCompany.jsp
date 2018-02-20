@@ -14,14 +14,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="ListVideogame" method="post">
+<form action="ListCompany" method="post">
 	<input type="submit" value="Show List">
 </form>
 
 <%
- List<Videogame> videogames = (List<Videogame>)request.getAttribute("listAllVideogames");
- System.out.println(videogames);
- pageContext.setAttribute("videogames", videogames);
+ List<Company> companies = (List<Company>)request.getAttribute("listAllCompanies");
+ System.out.println(companies);
+ pageContext.setAttribute("companies", companies);
 %>
 <br/>
 <br/>
@@ -36,19 +36,17 @@
 	<thead>
 		<tr>
 			<td>Name</td>
-			<td>Recommended Age</td>
-			<td>Release Date</td>
 			<td>Company</td>
+
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="videogame1" items="${listAllVideogames}">
+		<c:forEach var="company" items="${listAllCompanies}">
 			<tr>
-				<td><c:out value="${videogame1.name}"/> </td>
-				<td><c:out value="${videogame1.recommendedAge}"/> </td>
-				<td><c:out value="${videogame1.releaseDate}"/> </td>
-				<td><c:out value="${videogame1.companyId}"/> </td>
-				<td><a href="deleteVideogame?name=${videogame1.name}">Delete</a></td>
+				<td><c:out value="${company.name}"/> </td>
+				<td><c:out value="${company.creationDate}"/> </td>
+				<td><c:out value="${company.id}"/> </td>
+				<td><a href="deleteConsole?nombre=${company.name}">Delete</a></td>
 	    	</tr>
 		</c:forEach>
 	</tbody>

@@ -15,7 +15,7 @@ public class VideogameAssembler {
 		videogame.setName(req.getParameter("name"));
 		videogame.setRecommendedAge(req.getParameter("recommendedAge"));
 		videogame.setReleaseDate(Date.valueOf((req.getParameter("releaseDate"))));
-
+		videogame.setCompanyId(Integer.parseInt(req.getParameter("companyId")));
 		return videogame;
 	}
 }

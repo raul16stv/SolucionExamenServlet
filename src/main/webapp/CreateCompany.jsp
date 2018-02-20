@@ -7,16 +7,16 @@
 <title>Insert a new console </title>
 </head>
 <body>
-	<form action="CreateVideogame" method="post">
+	<form action="CreateCompany" method="post">
+		<span> ID:</span>
+
+		<input type="int" name="id"><br/>
 		<span>Name:</span>
 
 		<input type="text" name="name"> <br/>
-		<span>Recommended Age:</span>
+		<span>Creation Date:</span>
 
-		<input type="text" name="recommendedAge"><br/>
-		<span>Release Date:</span>
-
-		<input type="date" name="releaseDate"><br/>
+		<input type="date" name="creationDate"><br/>
 
 		<input type="submit">
 	</form>

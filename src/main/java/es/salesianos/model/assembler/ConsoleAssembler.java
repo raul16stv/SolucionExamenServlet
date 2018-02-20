@@ -11,7 +11,7 @@ public class ConsoleAssembler {
 
 		Console console = new Console();
 		console.setName(req.getParameter("name"));
-		console.setCompany(req.getParameter("company"));
+		console.setCompanyId(Integer.parseInt(req.getParameter("companyId")));
 		return console;
 	}
 }
