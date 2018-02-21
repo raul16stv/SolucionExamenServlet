@@ -8,6 +8,7 @@ public class Console {
 
 	private String name;
 	private int companyId;
+
 	public String getName() {
 		return name;
 	}

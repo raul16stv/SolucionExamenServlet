@@ -41,7 +41,12 @@ public class VideogameService {
 	public List<Videogame> listAllVideogamesByCompany(int id) {
 		return repository.searchAllByCompany(id);
 	}
-
+	public List<Videogame> listAllVideogamesOrderedAlphabetical(){
+		return repository.searchAllOrderedAlphabetical();
+	}
+	public List<Videogame> listAllVideogamesOrderedDate(){
+		return repository.searchAllOrderedDate();
+	}
 	public VideogameRepository getVideogameRepository() {
 		return repository;
 	}

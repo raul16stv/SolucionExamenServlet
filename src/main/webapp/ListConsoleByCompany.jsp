@@ -11,7 +11,7 @@
 </head>
 <body>
 <form action="ListConsoleCompany" method="post">
-  <select name="selectedCompany" > 
+  <select name="selectedCompany" >
          <c:forEach var="listAllCompany" items="${listAllCompany}">
 	  		<option value="${listAllCompany.id}">${listAllCompany.name}</option>
          </c:forEach>

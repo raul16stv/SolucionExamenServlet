@@ -10,24 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.salesianos.model.Console;
+import es.salesianos.model.Videogame;
 import es.salesianos.service.ConsoleService;
+import es.salesianos.service.VideogameService;
 
-public class ListConsoleByCompany extends HttpServlet {
+public class ListVideogameDate extends HttpServlet {
 
-	private ConsoleService service= new  ConsoleService();
+	private VideogameService service= new  VideogameService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			int id = Integer.parseInt(req.getParameter("selectedCompany"));
-			List<Console> listAllConsolesByCompany = service.listAllConsolesByCompany(id);
-			req.setAttribute("listAllConsolesByCompany", listAllConsolesByCompany);
-			redirect(req,resp);
-
+		List<Videogame> listAllVideogamesDate = service.listAllVideogamesOrderedDate();
+		req.setAttribute("listAllVideogamesDate", listAllVideogamesDate);
+		redirect(req,resp);
 	}
 
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListConsoleByCompany.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListVideogameDate.jsp");
 		dispatcher.forward(req,resp);
 	}
 }
