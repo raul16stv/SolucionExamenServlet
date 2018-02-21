@@ -38,6 +38,9 @@ public class VideogameService {
 	public List<Videogame> listAllVideogames() {
 		return repository.searchAll();
 	}
+	public List<Videogame> listAllVideogamesByCompany(int id) {
+		return repository.searchAllByCompany(id);
+	}
 
 	public VideogameRepository getVideogameRepository() {
 		return repository;

@@ -35,6 +35,9 @@ public class ConsoleService {
 	public List<Console> listAllConsoles() {
 		return repository.searchAll();
 	}
+	public List<Console> listAllConsolesByCompany(int id) {
+		return repository.searchAllByCompany(id);
+	}
 
 	public ConsoleRepository getConsoleRepository() {
 		return repository;

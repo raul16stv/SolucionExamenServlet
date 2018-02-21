@@ -131,5 +131,34 @@ public class ConsoleRepository {
 		manager.close(conn);
 		return listConsoles;
 	}
+	public List<Console> searchAllByCompany(int id) {
+		List<Console> listConsoles= new ArrayList<Console>();
+		Connection conn = manager.open(jdbcUrl);
+		ResultSet resultSet = null;
+		PreparedStatement prepareStatement = null;
+		try {
+			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE companyId="+id);
+			resultSet = prepareStatement.executeQuery();
+			while(resultSet.next()){
+				Console consoleInDatabase = new Console();
+				consoleInDatabase.setName(resultSet.getString(1));
+				consoleInDatabase.setCompanyId(resultSet.getInt(2));
+
+				listConsoles.add(consoleInDatabase);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			close(resultSet);
+			close(prepareStatement);
+		}
+
+
+		manager.close(conn);
+		return listConsoles;
+	}
+
 
 }

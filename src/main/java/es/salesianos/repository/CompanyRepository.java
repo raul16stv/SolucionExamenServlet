@@ -31,7 +31,7 @@ public class CompanyRepository {
 				companyInDatabase = new Company();
 				companyInDatabase.setName(resultSet.getString(1));
 				companyInDatabase.setCreationDate(resultSet.getDate(2));
-				companyInDatabase.setCompanyId(resultSet.getInt(3));
+			
 
 			}
 		} catch (SQLException e) {
@@ -85,16 +85,15 @@ public class CompanyRepository {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement("INSERT INTO Companies (id, name,creationDate)" + "VALUES (?,?,?)");
-			preparedStatement.setString(2, companyForm.getName());
-			preparedStatement.setInt(1, companyForm.getCompanyId());
-			preparedStatement.setDate(3,companyForm.getCreationDate());
+			preparedStatement = conn.prepareStatement("INSERT INTO Companies (name,creationDate)" + "VALUES (?,?)");
+			preparedStatement.setString(1, companyForm.getName());
+			preparedStatement.setDate(2,companyForm.getCreationDate());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}finally {
-			close(preparedStatement);
+			
 		}
 
 
@@ -119,8 +118,6 @@ public class CompanyRepository {
 				Company companyInDatabase = new Company();
 				companyInDatabase.setName(resultSet.getString(1));
 				companyInDatabase.setCreationDate(resultSet.getDate(2));
-				companyInDatabase.setCompanyId(resultSet.getInt(3));
-
 				listCompanies.add(companyInDatabase);
 			}
 

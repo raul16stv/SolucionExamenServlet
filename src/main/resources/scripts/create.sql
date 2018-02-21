@@ -14,8 +14,8 @@ create table IF NOT EXISTS Videogames(
 
 );
 create table IF NOT EXISTS Companies(
-	id int ,
-	name varchar(25) PRIMARY KEY,
+	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name varchar(25),
 	creationDate Date,
 	
 	

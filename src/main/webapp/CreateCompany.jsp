@@ -8,9 +8,6 @@
 </head>
 <body>
 	<form action="CreateCompany" method="post">
-		<span> ID:</span>
-
-		<input type="int" name="id"><br/>
 		<span>Name:</span>
 
 		<input type="text" name="name"> <br/>

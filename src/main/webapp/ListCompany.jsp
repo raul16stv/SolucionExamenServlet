@@ -45,7 +45,7 @@
 			<tr>
 				<td><c:out value="${company.name}"/> </td>
 				<td><c:out value="${company.creationDate}"/> </td>
-				<td><c:out value="${company.id}"/> </td>
+			
 				<td><a href="deleteConsole?nombre=${company.name}">Delete</a></td>
 	    	</tr>
 		</c:forEach>

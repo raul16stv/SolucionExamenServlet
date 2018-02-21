@@ -20,10 +20,10 @@ public class Company {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	public int getCompanyId() {
+	public int getId() {
 		return id;
 	}
-	public void setCompanyId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

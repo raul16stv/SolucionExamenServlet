@@ -28,6 +28,25 @@
         <servlet-name>ListConsole</servlet-name>
         <url-pattern>ListConsole</url-pattern>
     </servlet-mapping>
+       <servlet>
+        <servlet-name>ListConsoleByCompany</servlet-name>
+        <servlet-class>es.salesianos.servlet.ListConsoleByCompany</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ListConsoleByCompany</servlet-name>	
+        <url-pattern>listConsoleByCompany</url-pattern>
+    </servlet-mapping>
+     <servlet>
+        <servlet-name>ListConsoleCompany</servlet-name>
+        <servlet-class>es.salesianos.servlet.ListConsoleCompany</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ListConsoleCompany</servlet-name>
+        <url-pattern>ListConsoleCompany</url-pattern>
+    </servlet-mapping>
+    
 
 	<servlet>
 		<servlet-name>ConsoleDelete</servlet-name>
@@ -41,6 +60,25 @@
 
 
 	<!-- Videogame -->
+	<servlet-mapping>
+        <servlet-name>ListVideogameByCompany</servlet-name>
+        <url-pattern>ListVideogameByCompany</url-pattern>
+    </servlet-mapping>
+      <servlet>
+        <servlet-name>ListVideogameByCompany</servlet-name>
+        <servlet-class>es.salesianos.servlet.ListVideogameByCompany</servlet-class>
+    </servlet>
+	
+	<servlet>
+        <servlet-name>ListVideogameCompany</servlet-name>
+        <servlet-class>es.salesianos.servlet.ListVideogameCompany</servlet-class>
+    </servlet>
+
+	<servlet-mapping>
+        <servlet-name>ListVideogameCompany</servlet-name>
+        <url-pattern>ListVideogameCompany</url-pattern>
+    </servlet-mapping>
+    
 	   <servlet>
         <servlet-name>CreateVideogame</servlet-name>
         <servlet-class>es.salesianos.servlet.CreateVideogame</servlet-class>

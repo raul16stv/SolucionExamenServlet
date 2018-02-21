@@ -136,5 +136,34 @@ public class VideogameRepository {
 		manager.close(conn);
 		return listVideogames;
 	}
+	public List<Videogame> searchAllByCompany(int id) {
+		List<Videogame> listVideogames= new ArrayList<Videogame>();
+		Connection conn = manager.open(jdbcUrl);
+		ResultSet resultSet = null;
+		PreparedStatement prepareStatement = null;
+		try {
+			prepareStatement = conn.prepareStatement("SELECT * FROM Videogames WHERE companyId="+id);
+			resultSet = prepareStatement.executeQuery();
+			while(resultSet.next()){
+				Videogame videogameInDatabase = new Videogame();
+				videogameInDatabase.setName(resultSet.getString(1));
+				videogameInDatabase.setRecommendedAge(resultSet.getString(2));
+				videogameInDatabase.setReleaseDate(resultSet.getDate(3));
+				videogameInDatabase.setCompanyId(resultSet.getInt(4));
+				listVideogames.add(videogameInDatabase);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			close(resultSet);
+			close(prepareStatement);
+		}
+
+
+		manager.close(conn);
+		return listVideogames;
+	}
 
 }
