@@ -14,24 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="ListVideogameDate" method="post">
-	<input type="submit" value="Show List">
-</form>
-
-<%
- List<Videogame> videogames = (List<Videogame>)request.getAttribute("listAllVideogamesDate");
- System.out.println(videogames);
- pageContext.setAttribute("videogames", videogames);
-%>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
 <table border="1">
 	<thead>
 		<tr>
@@ -42,7 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="videogame1" items="${listAllVideogamesDate}">
+		<c:forEach var="videogame1" items="${VideogameByDate}">
 			<tr>
 				<td><c:out value="${videogame1.name}"/> </td>
 				<td><c:out value="${videogame1.recommendedAge}"/> </td>

@@ -14,6 +14,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="Videogame" method="post">
+	<input type="submit" value="Show List">
+</form>
 <table border="1">
 	<thead>
 		<tr>
@@ -24,7 +27,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="videogame1" items="${ListVideogame}">
+		<c:forEach var="videogame1" items="${Videogames}">
 			<tr>
 				<td><c:out value="${videogame1.name}"/> </td>
 				<td><c:out value="${videogame1.recommendedAge}"/> </td>

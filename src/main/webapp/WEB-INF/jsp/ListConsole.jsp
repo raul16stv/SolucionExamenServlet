@@ -14,23 +14,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="Console" method="post">
+	<input type="submit" value="Show List">
+</form>
 <table border="1">
 	<thead>
 		<tr>
 			<td>Name</td>
-			<td>Recommended Age</td>
-			<td>Release Date</td>
 			<td>Company</td>
+
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="videogame1" items="${ListVideogame}">
+		<c:forEach var="console1" items="${Console}">
 			<tr>
-				<td><c:out value="${videogame1.name}"/> </td>
-				<td><c:out value="${videogame1.recommendedAge}"/> </td>
-				<td><c:out value="${videogame1.releaseDate}"/> </td>
-				<td><c:out value="${videogame1.companyId}"/> </td>
-				<td><a href="VideogameDelete?name=${videogame1.name}">Delete</a></td>
+				<td><c:out value="${console1.name}"/> </td>
+				<td><c:out value="${console1.companyId}"/> </td>
+				<td><a href="ConsoleDelete?name=${console1.name}">Delete</a></td>
 	    	</tr>
 		</c:forEach>
 	</tbody>

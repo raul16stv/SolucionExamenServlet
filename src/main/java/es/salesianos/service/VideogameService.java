@@ -6,56 +6,40 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import es.salesianos.connection.ConnectionH2;
-import es.salesianos.connection.ConnectionManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import es.salesianos.model.Console;
 import es.salesianos.model.Videogame;
-import es.salesianos.model.assembler.ConsoleAssembler;
-import es.salesianos.model.assembler.VideogameAssembler;
 import es.salesianos.repository.ConsoleRepository;
 import es.salesianos.repository.VideogameRepository;
-
+@Service
 public class VideogameService {
 
 
+	@Autowired
 	private VideogameRepository repository = new VideogameRepository();
 
-	public Videogame assembleVideogameFromRequest(HttpServletRequest req) {
-		return VideogameAssembler.assembleVideogameFrom(req);
+	public void insert(Videogame videogame) {
+		repository.insert(videogame);
 	}
-
-	public void insertOrUpdateVideogame(Videogame videogameForm) {
-		Videogame videogameInDatabase = repository.search(videogameForm);
-		if(null == videogameInDatabase){
-			repository.insert(videogameForm);
-		}else{
-			repository.update(videogameForm);
-		}
-	}
-	public void deleteVideogame(Videogame videogame){
+	public void delete(Videogame videogame) {
 		repository.delete(videogame);
 	}
-	public List<Videogame> listAllVideogames() {
-		return repository.searchAll();
+	public List<Videogame> listAll() {
+		return repository.listAll();
 	}
-	public List<Videogame> listAllVideogamesByCompany(int id) {
-		return repository.searchAllByCompany(id);
+	public List<Videogame> listAllOrderedByDate() {
+		return repository.listAllOrderedByDate();
 	}
-	public List<Videogame> listAllVideogamesOrderedAlphabetical(){
-		return repository.searchAllOrderedAlphabetical();
+	public List<Videogame> listAllOrderedByAlphabetical() {
+		return repository.listAllOrderedAlphabetical();
 	}
-	public List<Videogame> listAllVideogamesOrderedDate(){
-		return repository.searchAllOrderedDate();
-	}
-	public VideogameRepository getVideogameRepository() {
+	public VideogameRepository getRepository() {
 		return repository;
 	}
 
-	public void setVideogameRepository(VideogameRepository repository) {
+	public void setRepository(VideogameRepository repository) {
 		this.repository = repository;
 	}
-
-
-
-
 }

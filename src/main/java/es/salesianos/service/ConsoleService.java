@@ -5,49 +5,36 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import es.salesianos.connection.ConnectionH2;
-import es.salesianos.connection.ConnectionManager;
 import es.salesianos.model.Console;
-import es.salesianos.model.assembler.ConsoleAssembler;
 import es.salesianos.repository.ConsoleRepository;
 
+@Service
 public class ConsoleService {
 
-
+	@Autowired
 	private ConsoleRepository repository = new ConsoleRepository();
 
-	public Console assembleUserFromRequest(HttpServletRequest req) {
-		return ConsoleAssembler.assembleConsoleFrom(req);
+	public void insert(Console console) {
+		repository.insert(console);
 	}
-
-	public void insertOrUpdateConsole(Console consoleForm) {
-		Console consoleInDatabase = repository.search(consoleForm);
-		if(null == consoleInDatabase){
-			repository.insert(consoleForm);
-		}else{
-			repository.update(consoleForm);
-		}
-	}
-	public void deleteConsole(Console console){
+	public void delete(Console console) {
 		repository.delete(console);
 	}
-	public List<Console> listAllConsoles() {
-		return repository.searchAll();
-	}
-	public List<Console> listAllConsolesByCompany(int id) {
-		return repository.searchAllByCompany(id);
+	public List<Console> listAll() {
+		return repository.listAll();
 	}
 
-	public ConsoleRepository getConsoleRepository() {
+	public List<Console> listAllByCompany() {
+		return repository.listAllByCompany();
+	}
+	public ConsoleRepository getRepository() {
 		return repository;
 	}
 
 	public void setRepository(ConsoleRepository repository) {
 		this.repository = repository;
 	}
-
-
-
-
 }

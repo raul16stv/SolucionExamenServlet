@@ -14,24 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="ListCompany" method="post">
-	<input type="submit" value="Show List">
-</form>
-
-<%
- List<Company> companies = (List<Company>)request.getAttribute("listAllCompanies");
- System.out.println(companies);
- pageContext.setAttribute("companies", companies);
-%>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
 <table border="1">
 	<thead>
 		<tr>
@@ -41,12 +23,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="company" items="${listAllCompanies}">
+		<c:forEach var="company" items="${ListCompany}">
 			<tr>
 				<td><c:out value="${company.name}"/> </td>
 				<td><c:out value="${company.creationDate}"/> </td>
-			
-				<td><a href="deleteConsole?nombre=${company.name}">Delete</a></td>
+
+				<td><a href="CompanyDelete?nombre=${company.name}">Delete</a></td>
 	    	</tr>
 		</c:forEach>
 	</tbody>

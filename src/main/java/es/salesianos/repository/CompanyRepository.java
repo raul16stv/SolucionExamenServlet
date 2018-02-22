@@ -7,131 +7,62 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.salesianos.connection.ConnectionH2;
-import es.salesianos.connection.ConnectionManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import es.salesianos.model.Company;
 import es.salesianos.model.Console;
 import es.salesianos.model.Videogame;
-
+@Repository
 public class CompanyRepository {
 
-	private static final String jdbcUrl = "jdbc:h2:file:./src/main/resources/test";
-	ConnectionManager manager = new ConnectionH2();
+	@Autowired
+	private JdbcTemplate template;
+	@Autowired
+	private NamedParameterJdbcTemplate namedJdbcTemplate;
 
-	public Company search(Company companyForm) {
-		Company companyInDatabase= null;
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
-		Connection conn = manager.open(jdbcUrl);
-		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Companies WHERE name = ?");
-			prepareStatement.setString(1, companyForm.getName());
-			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
-				companyInDatabase = new Company();
-				companyInDatabase.setName(resultSet.getString(1));
-				companyInDatabase.setCreationDate(resultSet.getDate(2));
-			
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}finally {
-			close(resultSet);
-			close(prepareStatement);
-
-		}
-		manager.close(conn);
-		return companyInDatabase;
+	public void insert(Company company) {
+		String sql = "INSERT INTO Companies (id, name, creationDate)" + "VALUES (:id, :name,:creationDate)";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", company.getId());
+		params.addValue("name", company.getName());
+		params.addValue("creationDate", company.getCreationDate());
+		namedJdbcTemplate.update(sql, params);
+	}
+	public void delete(Company company) {
+		String sql = "DELETE FROM Companies WHERE (id)=(:id)";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", company.getId());
+		namedJdbcTemplate.update(sql, params);
 	}
 
-	private void close(PreparedStatement prepareStatement) {
-		try {
-			prepareStatement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+
+	public List<Company> listAll() {
+		String sql = "SELECT * FROM Companies";
+		List<Company> companies = template.query(sql, new BeanPropertyRowMapper(Company.class));
+		return companies;
 	}
 
-	private void close(ResultSet resultSet) {
-		try {
-			resultSet.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-	public void delete(Company companyForm) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
-		try {
-			preparedStatement = conn.prepareStatement("DELETE FROM Companies WHERE name=?");
-			preparedStatement.setString(1, companyForm.getName());
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}finally {
-			close(preparedStatement);
-		}
-
-
-		manager.close(conn);
+	public JdbcTemplate getTemplate() {
+		return template;
 	}
 
-	public void insert(Company companyForm) {
-		Connection conn = manager.open(jdbcUrl);
-		PreparedStatement preparedStatement = null;
-		try {
-			preparedStatement = conn.prepareStatement("INSERT INTO Companies (name,creationDate)" + "VALUES (?,?)");
-			preparedStatement.setString(1, companyForm.getName());
-			preparedStatement.setDate(2,companyForm.getCreationDate());
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}finally {
-			
-		}
-
-
-		manager.close(conn);
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
 	}
 
-	public void update(Company companyFormulario) {
-		Connection conn = manager.open(jdbcUrl);
-		// codigo sql que  inserta un usuario
-		manager.close(conn);
+	public NamedParameterJdbcTemplate getNamedJdbcTemplate() {
+		return namedJdbcTemplate;
 	}
 
-	public List<Company> searchAll() {
-		List<Company> listCompanies= new ArrayList<Company>();
-		Connection conn = manager.open(jdbcUrl);
-		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
-		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Companies");
-			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
-				Company companyInDatabase = new Company();
-				companyInDatabase.setName(resultSet.getString(1));
-				companyInDatabase.setCreationDate(resultSet.getDate(2));
-				listCompanies.add(companyInDatabase);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}finally {
-			close(resultSet);
-			close(prepareStatement);
-		}
-
-
-		manager.close(conn);
-		return listCompanies;
+	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
+		this.namedJdbcTemplate = namedJdbcTemplate;
 	}
+
+
 
 }
