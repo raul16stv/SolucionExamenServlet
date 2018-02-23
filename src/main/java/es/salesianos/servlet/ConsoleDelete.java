@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import es.salesianos.model.Console;
 import es.salesianos.service.ConsoleService;
 
-
 public class ConsoleDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +28,6 @@ public class ConsoleDelete extends HttpServlet {
 		req.setAttribute("name", req.getParameter("name"));
 		confirmationRedirect(req, resp);
 	}
-
 
 	protected void confirmationRedirect(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {

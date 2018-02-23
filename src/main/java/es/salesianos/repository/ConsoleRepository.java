@@ -17,7 +17,7 @@ public class ConsoleRepository {
 	ConnectionManager manager = new ConnectionH2();
 
 	public Console search(Console consoleForm) {
-		Console consoleInDatabase= null;
+		Console consoleInDatabase = null;
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		Connection conn = manager.open(jdbcUrl);
@@ -25,7 +25,7 @@ public class ConsoleRepository {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE name = ?");
 			prepareStatement.setString(1, consoleForm.getName());
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
 				consoleInDatabase.setCompanyId(resultSet.getInt(2));
@@ -34,12 +34,11 @@ public class ConsoleRepository {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(resultSet);
 			close(prepareStatement);
-
+			manager.close(conn);
 		}
-		manager.close(conn);
 		return consoleInDatabase;
 	}
 
@@ -60,6 +59,7 @@ public class ConsoleRepository {
 			throw new RuntimeException(e);
 		}
 	}
+
 	public void delete(Console consoleForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
@@ -70,12 +70,10 @@ public class ConsoleRepository {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(preparedStatement);
+			manager.close(conn);
 		}
-
-
-		manager.close(conn);
 	}
 
 	public void insert(Console consoleForm) {
@@ -89,76 +87,68 @@ public class ConsoleRepository {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(preparedStatement);
+			manager.close(conn);
 		}
-
-
-		manager.close(conn);
 	}
 
 	public void update(Console consolaFormulario) {
 		Connection conn = manager.open(jdbcUrl);
-		// codigo sql que  inserta un usuario
+		// codigo sql que inserta un usuario
 		manager.close(conn);
 	}
 
 	public List<Console> searchAll() {
-		List<Console> listConsoles= new ArrayList<Console>();
+		List<Console> listConsole = new ArrayList<Console>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
 			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles");
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
 				consoleInDatabase.setCompanyId(resultSet.getInt(2));
-
-				listConsoles.add(consoleInDatabase);
+				listConsole.add(consoleInDatabase);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(resultSet);
 			close(prepareStatement);
+			manager.close(conn);
 		}
-
-
-		manager.close(conn);
-		return listConsoles;
+		return listConsole;
 	}
+
 	public List<Console> searchAllByCompany(int id) {
-		List<Console> listConsoles= new ArrayList<Console>();
+		List<Console> listConsole = new ArrayList<Console>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
 		PreparedStatement prepareStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE companyId="+id);
+			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE companyId=" + id);
 			resultSet = prepareStatement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
 				consoleInDatabase.setCompanyId(resultSet.getInt(2));
-
-				listConsoles.add(consoleInDatabase);
+				listConsole.add(consoleInDatabase);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(resultSet);
 			close(prepareStatement);
+			manager.close(conn);
 		}
-
-
-		manager.close(conn);
-		return listConsoles;
+		return listConsole;
 	}
-
 
 }

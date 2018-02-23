@@ -16,18 +16,17 @@ import es.salesianos.service.VideogameService;
 
 public class ListVideogameAlphabetical extends HttpServlet {
 
-	private VideogameService service= new  VideogameService();
+	private VideogameService service = new VideogameService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Videogame> listAllVideogamesAlp = service.listAllVideogamesOrderedAlphabetical();
-		req.setAttribute("listAllVideogamesAlp", listAllVideogamesAlp);
-		redirect(req,resp);
+		List<Videogame> listAllVideogamesOrderedAlphabetical = service.listAllVideogamesOrderedAlphabetical();
+		req.setAttribute("listAllVideogamesOrderedAlphabetical", listAllVideogamesOrderedAlphabetical);
+		redirect(req, resp);
 	}
-
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListVideogameAlphabetical.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

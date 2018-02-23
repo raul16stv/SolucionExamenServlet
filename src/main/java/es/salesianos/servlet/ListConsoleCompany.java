@@ -1,6 +1,5 @@
 package es.salesianos.servlet;
 
-
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -12,7 +11,7 @@ import es.salesianos.model.*;
 import es.salesianos.service.CompanyService;
 
 public class ListConsoleCompany extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 	private CompanyService service = new CompanyService();
 
@@ -20,11 +19,11 @@ public class ListConsoleCompany extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Company> listAllCompany = service.listAllCompany();
 		req.setAttribute("listAllCompany", listAllCompany);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
-	
+
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListConsoleByCompany.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

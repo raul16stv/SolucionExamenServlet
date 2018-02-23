@@ -17,9 +17,7 @@ import es.salesianos.model.Videogame;
 import es.salesianos.service.ConsoleService;
 import es.salesianos.service.VideogameService;
 
-
-
-public class CreateVideogame extends HttpServlet{
+public class CreateVideogame extends HttpServlet {
 
 	private VideogameService service = new VideogameService();
 
@@ -27,12 +25,12 @@ public class CreateVideogame extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Videogame videogame = service.assembleVideogameFromRequest(req);
 		service.insertOrUpdateVideogame(videogame);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateVideogame.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 
 	public VideogameService getService() {
@@ -42,7 +40,5 @@ public class CreateVideogame extends HttpServlet{
 	public void setVideogameService(VideogameService service) {
 		this.service = service;
 	}
-
-
 
 }

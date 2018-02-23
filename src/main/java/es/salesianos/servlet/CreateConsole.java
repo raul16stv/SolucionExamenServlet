@@ -15,9 +15,7 @@ import es.salesianos.connection.ConnectionManager;
 import es.salesianos.model.Console;
 import es.salesianos.service.ConsoleService;
 
-
-
-public class CreateConsole extends HttpServlet{
+public class CreateConsole extends HttpServlet {
 
 	private ConsoleService service = new ConsoleService();
 
@@ -25,12 +23,12 @@ public class CreateConsole extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Console console = service.assembleUserFromRequest(req);
 		service.insertOrUpdateConsole(console);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateConsole.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 
 	public ConsoleService getService() {
@@ -40,7 +38,5 @@ public class CreateConsole extends HttpServlet{
 	public void setService(ConsoleService service) {
 		this.service = service;
 	}
-
-
 
 }

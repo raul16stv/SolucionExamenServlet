@@ -17,7 +17,6 @@ import es.salesianos.repository.VideogameRepository;
 
 public class VideogameService {
 
-
 	private VideogameRepository repository = new VideogameRepository();
 
 	public Videogame assembleVideogameFromRequest(HttpServletRequest req) {
@@ -26,27 +25,33 @@ public class VideogameService {
 
 	public void insertOrUpdateVideogame(Videogame videogameForm) {
 		Videogame videogameInDatabase = repository.search(videogameForm);
-		if(null == videogameInDatabase){
+		if (null == videogameInDatabase) {
 			repository.insert(videogameForm);
-		}else{
+		} else {
 			repository.update(videogameForm);
 		}
 	}
-	public void deleteVideogame(Videogame videogame){
+
+	public void deleteVideogame(Videogame videogame) {
 		repository.delete(videogame);
 	}
+
 	public List<Videogame> listAllVideogames() {
 		return repository.searchAll();
 	}
+
 	public List<Videogame> listAllVideogamesByCompany(int id) {
 		return repository.searchAllByCompany(id);
 	}
-	public List<Videogame> listAllVideogamesOrderedAlphabetical(){
+
+	public List<Videogame> listAllVideogamesOrderedAlphabetical() {
 		return repository.searchAllOrderedAlphabetical();
 	}
-	public List<Videogame> listAllVideogamesOrderedDate(){
+
+	public List<Videogame> listAllVideogamesOrderedDate() {
 		return repository.searchAllOrderedDate();
 	}
+
 	public VideogameRepository getVideogameRepository() {
 		return repository;
 	}
@@ -54,8 +59,5 @@ public class VideogameService {
 	public void setVideogameRepository(VideogameRepository repository) {
 		this.repository = repository;
 	}
-
-
-
 
 }

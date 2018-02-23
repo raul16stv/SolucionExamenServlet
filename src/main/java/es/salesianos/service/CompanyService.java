@@ -23,26 +23,30 @@ public class CompanyService {
 	public Company assembleUserFromRequest(HttpServletRequest req) {
 		return CompanyAssembler.assembleCompanyFrom(req);
 	}
+
 	public void insertOrUpdateCompany(Company companyForm) {
 		Company companyInDatabase = repository.search(companyForm);
-		if(null == companyInDatabase){
+		if (null == companyInDatabase) {
 			repository.insert(companyForm);
-		}else{
+		} else {
 			repository.update(companyForm);
 		}
 	}
+
 	public void createNewCompanyFromRequest(Company companyForm) {
-			repository.insert(companyForm);
+		repository.insert(companyForm);
 	}
+
 	public List<Company> listAllCompany() {
 		return repository.searchAll();
 	}
+
 	public CompanyRepository getRepository() {
 		return repository;
 	}
+
 	public void setRepository(CompanyRepository repository) {
 		this.repository = repository;
 	}
-
 
 }

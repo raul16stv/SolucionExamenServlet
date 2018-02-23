@@ -16,18 +16,17 @@ import es.salesianos.service.ConsoleService;
 
 public class ListCompany extends HttpServlet {
 
-	private CompanyService service= new  CompanyService();
+	private CompanyService service = new CompanyService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Company> listAllCompanies = service.listAllCompany();
 		req.setAttribute("listAllCompanies", listAllCompanies);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
-
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListCompany.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

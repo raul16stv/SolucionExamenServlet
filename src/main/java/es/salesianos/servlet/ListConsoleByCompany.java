@@ -14,20 +14,19 @@ import es.salesianos.service.ConsoleService;
 
 public class ListConsoleByCompany extends HttpServlet {
 
-	private ConsoleService service= new  ConsoleService();
+	private ConsoleService service = new ConsoleService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			int id = Integer.parseInt(req.getParameter("selectedCompany"));
-			List<Console> listAllConsolesByCompany = service.listAllConsolesByCompany(id);
-			req.setAttribute("listAllConsolesByCompany", listAllConsolesByCompany);
-			redirect(req,resp);
+		int id = Integer.parseInt(req.getParameter("selectedCompany"));
+		List<Console> listAllConsolesByCompany = service.listAllConsolesByCompany(id);
+		req.setAttribute("listAllConsolesByCompany", listAllConsolesByCompany);
+		redirect(req, resp);
 
 	}
 
-
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListConsoleByCompany.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

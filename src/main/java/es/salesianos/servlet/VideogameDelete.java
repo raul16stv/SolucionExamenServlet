@@ -13,7 +13,6 @@ import es.salesianos.model.Videogame;
 import es.salesianos.service.ConsoleService;
 import es.salesianos.service.VideogameService;
 
-
 public class VideogameDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +30,6 @@ public class VideogameDelete extends HttpServlet {
 		req.setAttribute("name", req.getParameter("name"));
 		confirmationRedirect(req, resp);
 	}
-
 
 	protected void confirmationRedirect(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {

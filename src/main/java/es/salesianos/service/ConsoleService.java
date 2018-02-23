@@ -14,7 +14,6 @@ import es.salesianos.repository.ConsoleRepository;
 
 public class ConsoleService {
 
-
 	private ConsoleRepository repository = new ConsoleRepository();
 
 	public Console assembleUserFromRequest(HttpServletRequest req) {
@@ -23,18 +22,21 @@ public class ConsoleService {
 
 	public void insertOrUpdateConsole(Console consoleForm) {
 		Console consoleInDatabase = repository.search(consoleForm);
-		if(null == consoleInDatabase){
+		if (null == consoleInDatabase) {
 			repository.insert(consoleForm);
-		}else{
+		} else {
 			repository.update(consoleForm);
 		}
 	}
-	public void deleteConsole(Console console){
+
+	public void deleteConsole(Console console) {
 		repository.delete(console);
 	}
+
 	public List<Console> listAllConsoles() {
 		return repository.searchAll();
 	}
+
 	public List<Console> listAllConsolesByCompany(int id) {
 		return repository.searchAllByCompany(id);
 	}
@@ -46,8 +48,5 @@ public class ConsoleService {
 	public void setRepository(ConsoleRepository repository) {
 		this.repository = repository;
 	}
-
-
-
 
 }

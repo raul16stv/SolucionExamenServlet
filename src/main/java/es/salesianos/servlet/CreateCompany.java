@@ -17,9 +17,7 @@ import es.salesianos.model.Console;
 import es.salesianos.service.CompanyService;
 import es.salesianos.service.ConsoleService;
 
-
-
-public class CreateCompany extends HttpServlet{
+public class CreateCompany extends HttpServlet {
 
 	private CompanyService service = new CompanyService();
 
@@ -27,12 +25,12 @@ public class CreateCompany extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Company company = service.assembleUserFromRequest(req);
 		service.insertOrUpdateCompany(company);
-		redirect(req,resp);
+		redirect(req, resp);
 	}
 
 	protected void redirect(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateCompany.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 
 	public CompanyService getService() {
@@ -42,7 +40,5 @@ public class CreateCompany extends HttpServlet{
 	public void setService(CompanyService service) {
 		this.service = service;
 	}
-
-
 
 }
