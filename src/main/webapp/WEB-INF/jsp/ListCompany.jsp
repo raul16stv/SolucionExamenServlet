@@ -14,9 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="Company" method="post">
-	<input type="submit" value="Show List">
-</form>
 <table border="1">
 	<thead>
 		<tr>
@@ -26,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="company" items="${Company}">
+		<c:forEach var="company" items="${ListCompany}">
 			<tr>
 				<td><c:out value="${company.name}"/> </td>
 				<td><c:out value="${company.creationDate}"/> </td>

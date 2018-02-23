@@ -14,9 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="Console" method="post">
-	<input type="submit" value="Show List">
-</form>
 <table border="1">
 	<thead>
 		<tr>
@@ -26,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="console1" items="${Console}">
+		<c:forEach var="console1" items="${ListConsole}">
 			<tr>
 				<td><c:out value="${console1.name}"/> </td>
 				<td><c:out value="${console1.companyId}"/> </td>
@@ -35,18 +32,5 @@
 		</c:forEach>
 	</tbody>
 </table>
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
-
-
 </body>
 </html>
