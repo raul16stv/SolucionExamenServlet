@@ -94,10 +94,20 @@ public class CompanyRepository {
 		}
 	}
 
-	public void update(Company companyFormulario) {
+	public void update(Company companyForm) {
 		Connection conn = manager.open(jdbcUrl);
-		// codigo sql que inserta un usuario
-		manager.close(conn);
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = conn.prepareStatement("UPDATE Companies SET (?,?)");
+			preparedStatement.setString(1, companyForm.getName());
+			preparedStatement.setDate(2, companyForm.getCreationDate());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			manager.close(conn);
+		}
 	}
 
 	public List<Company> searchAll() {

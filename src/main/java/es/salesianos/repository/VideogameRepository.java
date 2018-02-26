@@ -101,8 +101,21 @@ public class VideogameRepository {
 
 	public void update(Videogame videogameForm) {
 		Connection conn = manager.open(jdbcUrl);
-		// codigo sql que inserta un usuario
-		manager.close(conn);
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = conn.prepareStatement("UPDATE Videogames SET (?, ?, ?, ?)");
+			preparedStatement.setString(1, videogameForm.getName());
+			preparedStatement.setString(2, videogameForm.getRecommendedAge());
+			preparedStatement.setDate(3, videogameForm.getReleaseDate());
+			preparedStatement.setInt(4, videogameForm.getCompanyId());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			close(preparedStatement);
+			manager.close(conn);
+		}
 	}
 
 	public List<Videogame> searchAll() {

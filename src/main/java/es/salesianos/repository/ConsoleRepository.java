@@ -93,10 +93,20 @@ public class ConsoleRepository {
 		}
 	}
 
-	public void update(Console consolaFormulario) {
+	public void update(Console consoleForm) {
 		Connection conn = manager.open(jdbcUrl);
-		// codigo sql que inserta un usuario
-		manager.close(conn);
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = conn.prepareStatement("UPDATE Consoles SET (?,?)");
+			preparedStatement.setString(1, consoleForm.getName());
+			preparedStatement.setInt(2, consoleForm.getCompanyId());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			manager.close(conn);
+		}
 	}
 
 	public List<Console> searchAll() {
