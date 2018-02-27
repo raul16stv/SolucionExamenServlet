@@ -22,12 +22,12 @@ public class CompanyRepository {
 	public Company search(Company companyForm) {
 		Company companyInDatabase = null;
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Companies WHERE name = ?");
-			prepareStatement.setString(1, companyForm.getName());
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Companies WHERE name = ?");
+			preparedStatement.setString(1, companyForm.getName());
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				companyInDatabase = new Company();
 				companyInDatabase.setName(resultSet.getString(1));
@@ -37,8 +37,8 @@ public class CompanyRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return companyInDatabase;
@@ -73,7 +73,7 @@ public class CompanyRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
@@ -90,6 +90,7 @@ public class CompanyRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
@@ -106,6 +107,7 @@ public class CompanyRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
@@ -114,10 +116,10 @@ public class CompanyRepository {
 		List<Company> listCompany = new ArrayList<Company>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Companies");
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Companies");
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Company companyInDatabase = new Company();
 				companyInDatabase.setName(resultSet.getString(1));
@@ -129,8 +131,8 @@ public class CompanyRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return listCompany;

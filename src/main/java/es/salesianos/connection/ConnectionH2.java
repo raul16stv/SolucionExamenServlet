@@ -3,6 +3,7 @@ package es.salesianos.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionH2 implements ConnectionManager {
@@ -35,6 +36,24 @@ public class ConnectionH2 implements ConnectionManager {
 		try {
 			conn.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void close(ResultSet resultSet) {
+		try {
+			resultSet.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);		}
+
+	}
+
+	public void close(PreparedStatement preparedStatement) {
+		try {
+			preparedStatement.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}

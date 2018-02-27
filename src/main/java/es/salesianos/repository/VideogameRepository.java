@@ -21,12 +21,12 @@ public class VideogameRepository {
 	public Videogame search(Videogame videogameForm) {
 		Videogame videogameInDatabase = null;
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Videogames WHERE name = ?");
-			prepareStatement.setString(1, videogameForm.getName());
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Videogames WHERE name = ?");
+			preparedStatement.setString(1, videogameForm.getName());
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				videogameForm = new Videogame();
 				videogameForm.setName(resultSet.getString(1));
@@ -38,8 +38,8 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return videogameInDatabase;
@@ -74,7 +74,7 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
@@ -83,8 +83,7 @@ public class VideogameRepository {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = conn.prepareStatement(
-					"INSERT INTO Videogames (name,recommendedAge, releaseDate, companyId)" + "VALUES (?, ?,?,?)");
+			preparedStatement = conn.prepareStatement("INSERT INTO Videogames (name,recommendedAge, releaseDate, companyId)" + "VALUES (?, ?,?,?)");
 			preparedStatement.setString(1, videogameForm.getName());
 			preparedStatement.setString(2, videogameForm.getRecommendedAge());
 			preparedStatement.setDate(3, videogameForm.getReleaseDate());
@@ -94,7 +93,7 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
@@ -113,7 +112,7 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
@@ -122,10 +121,10 @@ public class VideogameRepository {
 		List<Videogame> listVideogame = new ArrayList<Videogame>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Videogames");
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Videogames");
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Videogame videogameInDatabase = new Videogame();
 				videogameInDatabase.setName(resultSet.getString(1));
@@ -139,8 +138,7 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return listVideogame;
@@ -150,10 +148,10 @@ public class VideogameRepository {
 		List<Videogame> listVideogame = new ArrayList<Videogame>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Videogames WHERE companyId=" + id);
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Videogames WHERE companyId=" + id);
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Videogame videogameInDatabase = new Videogame();
 				videogameInDatabase.setName(resultSet.getString(1));
@@ -167,8 +165,8 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return listVideogame;
@@ -178,10 +176,10 @@ public class VideogameRepository {
 		List<Videogame> listVideogame = new ArrayList<Videogame>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Videogames ORDER BY name ASC");
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Videogames ORDER BY name ASC");
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Videogame videogameInDatabase = new Videogame();
 				videogameInDatabase.setName(resultSet.getString(1));
@@ -195,8 +193,8 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return listVideogame;
@@ -206,10 +204,10 @@ public class VideogameRepository {
 		List<Videogame> listVideogame = new ArrayList<Videogame>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Videogames ORDER BY releaseDate ASC");
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Videogames ORDER BY releaseDate ASC");
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Videogame videogameInDatabase = new Videogame();
 				videogameInDatabase.setName(resultSet.getString(1));
@@ -223,8 +221,8 @@ public class VideogameRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return listVideogame;

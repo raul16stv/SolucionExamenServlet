@@ -19,12 +19,12 @@ public class ConsoleRepository {
 	public Console search(Console consoleForm) {
 		Console consoleInDatabase = null;
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		Connection conn = manager.open(jdbcUrl);
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE name = ?");
-			prepareStatement.setString(1, consoleForm.getName());
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE name = ?");
+			preparedStatement.setString(1, consoleForm.getName());
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
@@ -35,8 +35,8 @@ public class ConsoleRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return consoleInDatabase;
@@ -71,7 +71,7 @@ public class ConsoleRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
@@ -113,10 +113,10 @@ public class ConsoleRepository {
 		List<Console> listConsole = new ArrayList<Console>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles");
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Consoles");
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
@@ -128,8 +128,8 @@ public class ConsoleRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return listConsole;
@@ -139,10 +139,10 @@ public class ConsoleRepository {
 		List<Console> listConsole = new ArrayList<Console>();
 		Connection conn = manager.open(jdbcUrl);
 		ResultSet resultSet = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
-			prepareStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE companyId=" + id);
-			resultSet = prepareStatement.executeQuery();
+			preparedStatement = conn.prepareStatement("SELECT * FROM Consoles WHERE companyId=" + id);
+			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Console consoleInDatabase = new Console();
 				consoleInDatabase.setName(resultSet.getString(1));
@@ -154,8 +154,8 @@ public class ConsoleRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(resultSet);
-			close(prepareStatement);
+			manager.close(resultSet);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 		return listConsole;
