@@ -43,25 +43,6 @@ public class CompanyRepository {
 		}
 		return companyInDatabase;
 	}
-
-	private void close(PreparedStatement prepareStatement) {
-		try {
-			prepareStatement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-
-	private void close(ResultSet resultSet) {
-		try {
-			resultSet.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-
 	public void delete(Company companyForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;

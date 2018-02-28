@@ -41,25 +41,6 @@ public class ConsoleRepository {
 		}
 		return consoleInDatabase;
 	}
-
-	private void close(PreparedStatement prepareStatement) {
-		try {
-			prepareStatement.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-
-	private void close(ResultSet resultSet) {
-		try {
-			resultSet.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-
 	public void delete(Console consoleForm) {
 		Connection conn = manager.open(jdbcUrl);
 		PreparedStatement preparedStatement = null;
@@ -88,7 +69,7 @@ public class ConsoleRepository {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
-			close(preparedStatement);
+			manager.close(preparedStatement);
 			manager.close(conn);
 		}
 	}
