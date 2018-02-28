@@ -23,37 +23,34 @@ import es.salesianos.model.Console;
 import es.salesianos.service.ConsoleService;
 
 @Controller
-public class ConsoleController extends HttpServlet{
+public class ConsoleController extends HttpServlet {
 
 	@Autowired
 	private ConsoleService service;
 
-	@GetMapping("/ListConsole")
+	@GetMapping("/Console")
 	public ModelAndView ListConsole() {
 		ModelAndView modelAndView = new ModelAndView("ListConsole", "command", new Console());
 		modelAndView.addObject("ListConsole", service.listAll());
 		return modelAndView;
 	}
-	@PostMapping("/ListConsole")
-	public ModelAndView List() {
-		ModelAndView modelAndView = new ModelAndView("ListConsole", "command", new Console());
-		modelAndView.addObject("ListConsole", service.listAll());
-		return modelAndView;
-	}
+
 	@GetMapping("/ConsoleInsert")
 	public ModelAndView create() {
-		ModelAndView modelAndView = new ModelAndView("CreateConsole", "command", new Console());
-		return modelAndView;
+		return new ModelAndView("CreateConsole", "command", new Console());
 	}
+
 	@PostMapping("/ConsoleInsert")
 	public ModelAndView insert(@ModelAttribute("console") Console console) {
 		service.insert(console);
 		return new ModelAndView("CreateConsole", "command", new Console());
 	}
+
 	@GetMapping("/ConsoleDelete")
 	public ModelAndView delete(@ModelAttribute("Console") Console console) {
 		return new ModelAndView("ListConsole", "command", new Console());
 	}
+
 	@PostMapping("/ConsoleDelete")
 	public ModelAndView deleteConsole(@ModelAttribute("Console") Console console) {
 		service.delete(console);

@@ -14,24 +14,31 @@ public class Videogame {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getRecommendedAge() {
 		return recommendedAge;
 	}
+
 	public void setRecommendedAge(String recommendedAge) {
 		this.recommendedAge = recommendedAge;
 	}
+
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
+
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
+
 	public int getCompanyId() {
 		return companyId;
 	}
+
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}

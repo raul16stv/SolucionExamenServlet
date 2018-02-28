@@ -20,9 +20,11 @@ public class ConsoleService {
 	public void insert(Console console) {
 		repository.insert(console);
 	}
+
 	public void delete(Console console) {
 		repository.delete(console);
 	}
+
 	public List<Console> listAll() {
 		return repository.listAll();
 	}
@@ -30,6 +32,7 @@ public class ConsoleService {
 	public List<Console> listAllByCompany() {
 		return repository.listAllByCompany();
 	}
+
 	public ConsoleRepository getRepository() {
 		return repository;
 	}

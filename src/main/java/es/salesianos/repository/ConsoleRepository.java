@@ -25,12 +25,13 @@ public class ConsoleRepository {
 	private NamedParameterJdbcTemplate namedJdbcTemplate;
 
 	public void insert(Console console) {
-		String sql = "INSERT INTO Consoles (name, companyId)" + "VALUES ( :name,:companyId)";
+		String sql = "INSERT INTO Consoles (name, companyId) VALUES ( :name,:companyId)";
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("name", console.getName());
 		params.addValue("companyId", console.getCompanyId());
 		namedJdbcTemplate.update(sql, params);
 	}
+
 	public void delete(Console console) {
 		String sql = "DELETE FROM Consoles WHERE(name)=(:name)";
 		MapSqlParameterSource params = new MapSqlParameterSource();
@@ -43,11 +44,13 @@ public class ConsoleRepository {
 		List<Console> consoles = template.query(sql, new BeanPropertyRowMapper(Console.class));
 		return consoles;
 	}
+
 	public List<Console> listAllByCompany() {
 		String sql = "SELECT * FROM Consoles WHERE (companyId)=(:companyId)";
 		List<Console> consoles = template.query(sql, new BeanPropertyRowMapper(Console.class));
 		return consoles;
 	}
+
 	public JdbcTemplate getTemplate() {
 		return template;
 	}
@@ -63,7 +66,5 @@ public class ConsoleRepository {
 	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
 		this.namedJdbcTemplate = namedJdbcTemplate;
 	}
-
-
 
 }

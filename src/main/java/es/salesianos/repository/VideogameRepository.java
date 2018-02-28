@@ -19,6 +19,7 @@ import es.salesianos.model.Company;
 import es.salesianos.model.Console;
 import es.salesianos.model.Videogame;
 import es.salesianos.model.Videogame;
+
 @Repository
 public class VideogameRepository {
 
@@ -28,7 +29,8 @@ public class VideogameRepository {
 	private NamedParameterJdbcTemplate namedJdbcTemplate;
 
 	public void insert(Videogame videogame) {
-		String sql = "INSERT INTO Videogames (name,recommendedAge , releaseDate,companyId)" + "VALUES ( :name,:recommendedAge,:releaseDate,:companyId)";
+		String sql = "INSERT INTO Videogames (name,recommendedAge , releaseDate,companyId)"
+				+ "VALUES ( :name,:recommendedAge,:releaseDate,:companyId)";
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("name", videogame.getName());
 		params.addValue("recommendedAge", videogame.getRecommendedAge());
@@ -37,11 +39,13 @@ public class VideogameRepository {
 		namedJdbcTemplate.update(sql, params);
 
 	}
+
 	public List<Videogame> listAllOrderedByDate() {
 		String sql = "SELECT * FROM Videogames ORDER BY releaseDate ASC";
 		List<Videogame> videogames = template.query(sql, new BeanPropertyRowMapper(Videogame.class));
 		return videogames;
 	}
+
 	public List<Videogame> listAllOrderedAlphabetical() {
 		String sql = "SELECT * FROM Videogames ORDER BY name";
 		List<Videogame> videogames = template.query(sql, new BeanPropertyRowMapper(Videogame.class));
@@ -77,7 +81,5 @@ public class VideogameRepository {
 	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
 		this.namedJdbcTemplate = namedJdbcTemplate;
 	}
-
-
 
 }

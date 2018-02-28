@@ -15,6 +15,7 @@ import es.salesianos.model.Videogame;
 import es.salesianos.repository.CompanyRepository;
 import es.salesianos.repository.ConsoleRepository;
 import es.salesianos.repository.VideogameRepository;
+
 @Service
 public class CompanyService {
 
@@ -24,9 +25,11 @@ public class CompanyService {
 	public void insert(Company company) {
 		repository.insert(company);
 	}
+
 	public void delete(Company company) {
 		repository.delete(company);
 	}
+
 	public List<Company> listAll() {
 		return repository.listAll();
 	}

@@ -1,8 +1,8 @@
 <%@page import="es.salesianos.model.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-<%@ page import="java.io.*,java.util.*,es.salesianos.model.*" %>
+<%@ page import="java.io.*,java.util.*,es.salesianos.model.*"%>
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,41 +11,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>List of videogames ordered alphabetically</title>
 </head>
 <body>
-<table border="1">
-	<thead>
-		<tr>
-			<td>Name</td>
-			<td>Recommended Age</td>
-			<td>Release Date</td>
-			<td>Company</td>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach var="videogame1" items="${ListVideogameAlphabetical}">
+	<table border="1">
+		<thead>
 			<tr>
-				<td><c:out value="${videogame1.name}"/> </td>
-				<td><c:out value="${videogame1.recommendedAge}"/> </td>
-				<td><c:out value="${videogame1.releaseDate}"/> </td>
-				<td><c:out value="${videogame1.companyId}"/> </td>
-	    	</tr>
-		</c:forEach>
-	</tbody>
-</table>
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
-
-
+				<td>Name</td>
+				<td>Recommended Age</td>
+				<td>Release Date</td>
+				<td>Company</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="videogame1" items="${ListVideogameAlphabetical}">
+				<tr>
+					<td><c:out value="${videogame1.name}" /></td>
+					<td><c:out value="${videogame1.recommendedAge}" /></td>
+					<td><c:out value="${videogame1.releaseDate}" /></td>
+					<td><c:out value="${videogame1.companyId}" /></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>

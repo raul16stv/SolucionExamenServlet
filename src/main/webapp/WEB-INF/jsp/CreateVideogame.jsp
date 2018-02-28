@@ -4,21 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert a new console </title>
+<title>Insert a new videogame </title>
 </head>
 <body>
 	<form action="VideogameInsert" method="post">
 		<span>Name:</span>
-
 		<input type="text" name="name"> <br/>
 		<span>Recommended Age:</span>
-
 		<input type="text" name="recommendedAge"><br/>
 		<span>Release Date:</span>
-
 		<input type="date" name="releaseDate"><br/>
 		<span>Company: </span>
-
 		<input type="int" name="companyId"><br/>
 		<input type="submit">
 	</form>

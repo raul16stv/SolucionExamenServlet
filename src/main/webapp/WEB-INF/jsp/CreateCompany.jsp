@@ -4,17 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert a new console </title>
+<title>Insert a new company </title>
 </head>
 <body>
 	<form action="CompanyInsert" method="post">
 		<span>Name:</span>
-
 		<input type="text" name="name"> <br/>
 		<span>Creation Date:</span>
-
 		<input type="date" name="creationDate"><br/>
-
 		<input type="submit">
 	</form>
 	</body>

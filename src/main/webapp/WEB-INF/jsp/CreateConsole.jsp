@@ -9,12 +9,9 @@
 <body>
 	<form action="ConsoleInsert" method="post">
 		<span>Name:</span>
-
 		<input type="text" name="name"> <br/>
 		<span>Company:</span>
-
 		<input type="text" name="companyId"><br/>
-
 		<input type="submit">
 	</form>
 	</body>

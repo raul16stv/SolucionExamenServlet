@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import es.salesianos.model.Company;
 import es.salesianos.model.Console;
 import es.salesianos.model.Videogame;
+
 @Repository
 public class CompanyRepository {
 
@@ -33,13 +34,13 @@ public class CompanyRepository {
 		params.addValue("creationDate", company.getCreationDate());
 		namedJdbcTemplate.update(sql, params);
 	}
+
 	public void delete(Company company) {
 		String sql = "DELETE FROM Companies WHERE (id)=(:id)";
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("id", company.getId());
 		namedJdbcTemplate.update(sql, params);
 	}
-
 
 	public List<Company> listAll() {
 		String sql = "SELECT * FROM Companies";
@@ -62,7 +63,5 @@ public class CompanyRepository {
 	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
 		this.namedJdbcTemplate = namedJdbcTemplate;
 	}
-
-
 
 }
